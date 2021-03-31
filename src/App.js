@@ -7,6 +7,8 @@ import Auth from './Components/Auth';
 import SignUp from './Components/SignUp';
 import AccountPage from './Components/Account';
 import MainNavigation from "./Components/Navigation/MainNavigation";
+import BookInfo from "./Components/BookDetails/BookInfo";
+import authorBooks from "./Components/BookDetails/authorBooks";
 
 
 
@@ -22,6 +24,8 @@ render() {
             <Route path="/auth" component={Auth}/>
             <Route path="/signup" component={SignUp}/>
             <Route path="/account" component={AccountPage}/>
+            <Route path="/bookdetails/bookInfo/" component={BookInfo}/>
+            <Route path="/bookdetails/authorBooks/" component={authorBooks}/>
             </Switch>
             </main>
        

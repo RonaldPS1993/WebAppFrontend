@@ -16,6 +16,7 @@
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "react-zoom-pan-pinch": "^1.6.1",
     "web-vitals": "^1.1.0"
   },
   "scripts": {
@@ -24,12 +25,10 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-
   "repository": {
     "type": "git",
     "url": "https://github.com/RonaldPS1993/WebAppFrontend.git"
   },
-
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -51,5 +50,6 @@
   "devDependencies": {
     "css-loader": "^4.3.0",
     "style-loader": "^1.3.0"
-  }
+  },
+  "proxy": "http://localhost:3001"
 }
