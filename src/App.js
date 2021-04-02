@@ -6,6 +6,7 @@ import Route from 'react-router-dom/Route';
 import Auth from './Components/Auth';
 import SignUp from './Components/SignUp';
 import AccountPage from './Components/Account';
+import Wishlist from './Components/Wishlist';
 import MainNavigation from "./Components/Navigation/MainNavigation";
 
 
@@ -21,6 +22,7 @@ render() {
             <Redirect from="/" to="/auth" exact/>
             <Route path="/auth" component={Auth}/>
             <Route path="/signup" component={SignUp}/>
+            <Route path="/wishlist" component={Wishlist}/>
             <Route path="/account" component={AccountPage}/>
             </Switch>
             </main>

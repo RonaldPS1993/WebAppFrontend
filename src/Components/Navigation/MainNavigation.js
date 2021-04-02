@@ -21,6 +21,9 @@ const mainNavigation = props => (
                 <li>
                     <NavLink to="/account">Account</NavLink>
                 </li>
+                <li>
+                    <NavLink to="/wishlist">Wishlist</NavLink>
+                </li>
             </ul>
         </nav>
     </header>
