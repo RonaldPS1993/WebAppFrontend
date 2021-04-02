@@ -14,8 +14,11 @@
     "react-bootstrap": "^1.5.1",
     "react-bootstrap-validation": "^0.1.11",
     "react-dom": "^17.0.1",
+    "react-router-config": "^5.1.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "react-validation": "^3.0.7",
+    "validator": "^3.43.0",
     "web-vitals": "^1.1.0"
   },
   "scripts": {
@@ -24,12 +27,10 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-
   "repository": {
     "type": "git",
     "url": "https://github.com/RonaldPS1993/WebAppFrontend.git"
   },
-
   "eslintConfig": {
     "extends": [
       "react-app",
