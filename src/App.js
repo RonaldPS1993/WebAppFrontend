@@ -10,6 +10,8 @@ import WishlistMenu from './Components/Wishlist/WishlistMenu';
 import CreateWish from './Components/Wishlist/CreateWish';
 import CurrentWishlist from './Components/Wishlist/CurrentWishlist';
 import DisplayWish from './Components/Wishlist/DisplayWish';
+import AddToWish from './Components/Wishlist/AddToWish';
+import Change from './Components/Wishlist/Change';
 import MainNavigation from "./Components/Navigation/MainNavigation";
 
 
@@ -25,11 +27,13 @@ render() {
             <Redirect from="/" to="/auth" exact/>
             <Route path="/auth" component={Auth}/>
             <Route path="/signup" component={SignUp}/>
+            <Route path="/account" component={AccountPage}/>
             <Route path="/wishlist" exact component={WishlistMenu}/>
             <Route path="/wishlist/createwish" component={CreateWish}/>
             <Route path="/wishlist/currentwish" component={CurrentWishlist}/>
             <Route path="/wishlist/display/:cart_id/:customer_id" component={DisplayWish}/> 
-            <Route path="/account" component={AccountPage}/>
+            <Route path="/wishlist/add/:book_isbn/:book_title/:customer_id" component={AddToWish}/> 
+            <Route path="/wishlist/change/:book_count_id/:customer_id" component={Change}/> 
             </Switch>
             </main>
         <Switch>        

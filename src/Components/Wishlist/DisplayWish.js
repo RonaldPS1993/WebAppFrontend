@@ -4,10 +4,12 @@ import Button from '@material-ui/core/Button';
 import * as ReactBootStrap from "react-bootstrap";
 import Axios from "axios";
 
+
 function DisplayWish({match}) {
   
     useEffect(() => {
         fetchWish();
+        fetchNumber();
     },[]);
 
     //create states
@@ -20,8 +22,30 @@ function DisplayWish({match}) {
     const[objtodelete,setobj] = useState(0);
     const[message2, setMess2] = useState('');
 
-    const[objAdd,setobj2] = useState('');
+    const[FinalNum,setnum] = useState(0);
+
     const[message3, setMess3] = useState('');
+
+    const[objToChange,setobj2] = useState(0);
+
+        
+    const fetchNumber = async () => {
+        const fetchNum = await fetch(`http://localhost:3001/api/wishlist/getcount/${match.params.customer_id}`); 
+        const Num = await fetchNum.json();
+        setnum(Num.data[0].wish_count);
+        console.log("Num =");
+        console.log(Num);
+        console.log("final num =");
+        console.log(FinalNum);
+        
+        if(FinalNum<2){
+            setMess3("You must have at least 2 wishlist to change items between them");
+        }else{
+            setMess3("Provide the book count id of the item that you want to change.");
+        }
+    }
+
+    
 
     const fetchWish = async () => {
         const fetchWish = await fetch(`http://localhost:3001/api/wishlist/getwish/${match.params.cart_id}`); 
@@ -36,6 +60,7 @@ function DisplayWish({match}) {
         console.log(wishobj);
         console.log(match);
         console.log(username);
+        fetchNumber();
     }
 
     const renderWishlist = (wishlists,index) => {
@@ -48,25 +73,6 @@ function DisplayWish({match}) {
             
         )
     }
-
-
-    const  addItem= () => {
-        console.log(objAdd);
-        console.log(wishId);
-        Axios.post('http://localhost:3001/api/wishlist/addtowish',{
-            cart_id:wishId,
-            book_isbn:objAdd
-    }).then ((response) => {
-
-        if(response.data.data.affectedRows === 0){
-            console.log("You already have that book on your wishlist.\n");
-            setMess3("You already have that book on your wishlist.");
-        }else{
-            setMess3("Book sucesfully added to wishlist. Please push refresh.");
-        }
-        console.log(response);
-    });
-    };
 
     const  deleteItem= () => {
         console.log(objtodelete);
@@ -82,7 +88,7 @@ function DisplayWish({match}) {
         console.log(response);
     });
     };
-
+    
     return (
         <div className="GeekText">
         <div className="createwish">
@@ -121,8 +127,10 @@ function DisplayWish({match}) {
             <p>{message2}</p>
             <br></br>
             <br></br>
-            <p>If you want to add an object from this wishlist, please provide the book isbn, and push add.</p>
-            <label>Book isbn</label>
+            <p>{message3}</p>
+            <br></br>
+            <p>If you want to change an item to another wishlist, provide the book_count_id. And click change.</p>
+            <label>Book count id</label>
             <input 
                 type= "text" 
                 onChange={(e) => {
@@ -130,11 +138,11 @@ function DisplayWish({match}) {
                 }}
             />
             <br></br>
-            <button onClick={addItem}>Add</button>
+            <Button component={Link} to= {`/wishlist/change/${objToChange}/${username}`} >
+                Change
+            </Button>
             <br></br>
-            <p>{message3}</p>
-            <br></br>
-            <Button component={Link} to="/wishlist">
+            <Button component={Link} to= "/wishlist">
                 Return
             </Button>
         </div>
