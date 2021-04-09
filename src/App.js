@@ -28,9 +28,9 @@ render() {
             <Route path="/auth" component={Auth}/>
             <Route path="/signup" component={SignUp}/>
             <Route path="/account" component={AccountPage}/>
-            <Route path="/wishlist" exact component={WishlistMenu}/>
-            <Route path="/wishlist/createwish" component={CreateWish}/>
-            <Route path="/wishlist/currentwish" component={CurrentWishlist}/>
+            <Route path="/wishlist/:customer_id" exact component={WishlistMenu}/>
+            <Route path="/createwish/:customer_id" component={CreateWish}/>
+            <Route path="/currentwish/:customer_id" component={CurrentWishlist}/>
             <Route path="/wishlist/display/:cart_id/:customer_id" component={DisplayWish}/> 
             <Route path="/wishlist/add/:book_isbn/:book_title/:customer_id" component={AddToWish}/> 
             <Route path="/wishlist/change/:book_count_id/:customer_id" component={Change}/> 

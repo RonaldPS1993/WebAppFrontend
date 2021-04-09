@@ -112,7 +112,7 @@ function AddToWish({match}) {
             <br></br>
             <p>{message3}</p>
             <br></br>
-            <Button component={Link} to="/wishlist">
+            <Button component={Link} to={`/currentwish/${username}`}>
                 Return
             </Button>
         </div>

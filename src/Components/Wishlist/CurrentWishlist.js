@@ -5,10 +5,10 @@ import Button from '@material-ui/core/Button';
 import Axios from "axios";
 import * as ReactBootStrap from "react-bootstrap";
 
-function CurrentWishlist() {
+function CurrentWishlist({match}) {
 
     //declaration of states
-    const[username, setUsernameReg] = useState('');
+    const[username, setUsernameReg] = useState(match.params.customer_id);
     const[message, setMess] = useState('');
     const[link,setLink] = useState("http://localhost:3001/api/wishlist/getwishnum/");
     const[wishlist,setWishlists] = useState([]);
@@ -25,7 +25,7 @@ function CurrentWishlist() {
 
     const  getWishNum= () => {
         setMess('');
-        Axios.get(link).then((response) => {
+        Axios.get(`http://localhost:3001/api/wishlist/getwishnum/${username}`).then((response) => {
             setWishlists(response.data);
             console.log(response);
             if(wishlist.length == 0){   
@@ -48,18 +48,10 @@ function CurrentWishlist() {
         <div className="GeekText">
             <h1>Your current wishlists</h1>
             <br></br>
-            <label>Email</label>
-            <input 
-                type= "text" 
-                onChange={(e) => {
-                setUsernameReg(e.target.value);
-                setLink("http://localhost:3001/api/wishlist/getwishnum/"+e.target.value);
-                }}
-            />
+            <p>Click on a wishlist to access its contents ,and add an item</p>
             <br></br>
             <button onClick={getWishNum}>Get Wishlists</button>
             <br></br>
-            <p>Click on a wishlist to access its contents ,and add an item</p>
             <br></br>
             <p>{message}</p>
             <br></br>
@@ -75,7 +67,7 @@ function CurrentWishlist() {
             </tbody>
             </ReactBootStrap.Table>
             <br></br>
-            <Button component={Link} to="/wishlist">
+            <Button component={Link} to={`/wishlist/${username}`}>
                 Return
             </Button>
             

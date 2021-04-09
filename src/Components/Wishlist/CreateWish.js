@@ -4,10 +4,10 @@ import {Link} from "react-router-dom";
 import Button from '@material-ui/core/Button';
 import Axios from "axios";
 
-function CreateWish() {
+function CreateWish2({match}) {
   
     //createUser state
-    const[username, setUsernameReg] = useState('');
+    const[username, setUsernameReg] = useState(match.params.customer_id);
     const[wishlistname, setWishlistName] = useState('');
 
     //return message to user for verification
@@ -35,27 +35,19 @@ function CreateWish() {
         <div className="GeekText">
         <div className="createwish">
             <h1>Create Wishlist</h1>
-            <br></br>
-            <label>Email</label>
+            <label>Wishlist Name</label>
             <input 
-            type= "text" 
-            onChange={(e) => {
-                setUsernameReg(e.target.value);
-            }}
-            />
-             <label>Wishlist Name</label>
-             <input 
-            type="text"
-            onChange={(e) => {
-            setWishlistName(e.target.value);
-          }}
-          /> 
+                type="text"
+                onChange={(e) => {
+                setWishlistName(e.target.value);
+                }}
+            /> 
             <br></br>
             <button onClick={createWish}>Create New Wishlist</button>
             <br></br>
             <p>{wishstatus}</p>
             <br></br>
-            <Button component={Link} to="/wishlist">
+            <Button component={Link} to={`/wishlist/${username}`}>
                 Return
             </Button>
         </div>
@@ -63,4 +55,4 @@ function CreateWish() {
     );
 
 }
-export default CreateWish;
+export default CreateWish2;

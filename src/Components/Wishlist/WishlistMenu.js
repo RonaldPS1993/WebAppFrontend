@@ -4,15 +4,17 @@ import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Axios from "axios";
 
-function WishlistMenu() {
+function WishlistMenu({match}) {
   
+    const[username, setUsernameReg] = useState(match.params.customer_id);
+
 return (
     <div className="GeekText">
     <div className="wishlistMenu">
       <h1>Wishlist options</h1>
-      <Link to="/wishlist/createwish">Create Wishlist</Link>
+      <Link to={`/createwish/${match.params.customer_id}`}>Create Wishlist</Link>
       <br></br>
-      <Link to="/wishlist/currentwish">View current wishlists</Link>
+      <Link to={`/currentwish/${match.params.customer_id}`}>View current wishlists</Link>
       <br></br>
           </div>
           </div>

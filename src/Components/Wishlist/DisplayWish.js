@@ -28,6 +28,8 @@ function DisplayWish({match}) {
 
     const[objToChange,setobj2] = useState(0);
 
+    const[shopId,setShop] = useState(0);
+
         
     const fetchNumber = async () => {
         const fetchNum = await fetch(`http://localhost:3001/api/wishlist/getcount/${match.params.customer_id}`); 
@@ -61,6 +63,29 @@ function DisplayWish({match}) {
         console.log(match);
         console.log(username);
         fetchNumber();
+    }
+
+    const moveToShopp = async () => {
+        const fetchShop = await fetch(`http://localhost:3001/api/wishlist/getshopping/${match.params.customer_id}`); 
+        const shop = await fetchShop.json();
+        
+        setShop(Object.entries(shop)[1][1][0].cart_id);
+        console.log(shop);
+        console.log(shopId);
+
+        if(shopId != 0){
+            Axios.patch("http://localhost:3001/api/wishlist/changewish",{
+            cart_id:shopId,
+            book_count_id:objToChange
+            }).then((response) => {
+                if(response.data.success === 1){
+                    setMess3("Item sucesfully changed to your shopping cart. Click refresh.");
+                }
+                console.log(response);
+                
+            });
+        }
+        
     }
 
     const renderWishlist = (wishlists,index) => {
@@ -113,6 +138,7 @@ function DisplayWish({match}) {
             </ReactBootStrap.Table>
             <br></br>
             <br></br>
+            <h1>Delte an item</h1>
             <p>If you want to delete an object from this wishlist, please provide the book count id, and push delete.</p>
             <label>Book count id</label>
             <input 
@@ -127,9 +153,9 @@ function DisplayWish({match}) {
             <p>{message2}</p>
             <br></br>
             <br></br>
-            <p>{message3}</p>
+            <h2>Change an item</h2>
             <br></br>
-            <p>If you want to change an item to another wishlist, provide the book_count_id. And click change.</p>
+            <p>If you want to change an item to another wishlist or to your cart, provide the book_count_id, And click 'Move To Another Wishlist' or click 'Move To Shopping Cart'.</p>
             <label>Book count id</label>
             <input 
                 type= "text" 
@@ -138,11 +164,17 @@ function DisplayWish({match}) {
                 }}
             />
             <br></br>
+            <p>{message3}</p>
             <Button component={Link} to= {`/wishlist/change/${objToChange}/${username}`} >
-                Change
+                Move To Another Wishlist
             </Button>
             <br></br>
-            <Button component={Link} to= "/wishlist">
+            <br></br>
+            <button onClick={moveToShopp}>Move To Shopping Cart</button>
+            <br></br>
+            <br></br>
+            <br></br>
+            <Button component={Link} to= {`/currentwish/${username}`}>
                 Return
             </Button>
         </div>

@@ -102,7 +102,7 @@ function Change({match}) {
             <br></br>
             <p>{message2}</p>
             <br></br>
-            <Button component={Link} to="/wishlist">
+            <Button component={Link} to={`/currentwish/${match.params.customer_id}`}>
                 Return
             </Button>
         </div>
