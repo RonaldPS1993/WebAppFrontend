@@ -5,12 +5,14 @@ import "./App.css";
 
 import AuthService from "./services/auth.service";
 
-import Login from "./components/Login";
-import Register from "./components/Register";
-import Home from "./components/Home";
-import Profile from "./components/Profile";
-import BoardUser from "./components/BoardUser";
-import Account from "./components/Account";
+import Login from "./Components/Login";
+import Register from "./Components/Register";
+import Home from "./Components/Home";
+import Profile from "./Components/Profile";
+import BoardUser from "./Components/BoardUser";
+import Account from "./Components/Account";
+import BookInfo from "./Components/BookDetails/BookInfo";
+import authorBooks from "./Components/BookDetails/authorBooks";
 
 
 const App = () => {
@@ -95,6 +97,8 @@ const App = () => {
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/account" component={Account} />
           <Route path="/user" component={BoardUser} />
+          <Route path="/bookdetails/bookInfo/" component={BookInfo}/>
+          <Route path="/bookdetails/authorBooks/" component={authorBooks}/>
         </Switch>
       </div>
     </div>
