@@ -24,12 +24,10 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-
   "repository": {
     "type": "git",
     "url": "https://github.com/RonaldPS1993/WebAppFrontend.git"
   },
-
   "eslintConfig": {
     "extends": [
       "react-app",
