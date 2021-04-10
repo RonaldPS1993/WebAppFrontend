@@ -22,13 +22,13 @@ import Change from './Components/Wishlist/Change';
 
 
 const App = () => {
-  const [currentUser, setCurrentUser] = useState(undefined);
+  const [currentUser, setCurrentUser] = useState();
 
   useEffect(() => {
     const user = AuthService.getCurrentUser();
-
     if (user) {
       setCurrentUser(user);
+
     }
   }, []);
 
@@ -88,6 +88,11 @@ const App = () => {
             <li className="nav-item">
               <Link to={"/account"} className="nav-link">
                 Account
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to={`/wishlist/${currentUser}`} className="nav-link">
+                Wishlist
               </Link>
             </li>
 
