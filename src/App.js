@@ -1,108 +1,47 @@
-import React, { useState, useEffect } from "react";
-import { Switch, Route, Link } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
+import React, { Component } from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
+import {BrowserRouter as Router, Link, NavLink, Redirect, Prompt, BrowserRouter, Switch} from 'react-router-dom';
+import Route from 'react-router-dom/Route';
+import Auth from './Components/Auth';
+import SignUp from './Components/SignUp';
+import AccountPage from './Components/Account';
+import WishlistMenu from './Components/Wishlist/WishlistMenu';
+import CreateWish from './Components/Wishlist/CreateWish';
+import CurrentWishlist from './Components/Wishlist/CurrentWishlist';
+import DisplayWish from './Components/Wishlist/DisplayWish';
+import MainNavigation from "./Components/Navigation/MainNavigation";
+import Header from './Components/Cart/Header';
+import Main from './Components/Cart/Main';
+import Basket from './Components/Cart/Basket';
+import data from './Components/Cart/data';
+import { useState } from 'react';
+import CreateCart from "./Components/Cart/CreateCart";
 
-import AuthService from "./services/auth.service";
-
-import Login from "./Components/Login";
-import Register from "./Components/Register";
-import Home from "./Components/Home";
-import Profile from "./Components/Profile";
-import BoardUser from "./Components/BoardUser";
-import Account from "./Components/Account";
-import BookInfo from "./Components/BookDetails/BookInfo";
-import authorBooks from "./Components/BookDetails/authorBooks";
-
-
-const App = () => {
-  const [currentUser, setCurrentUser] = useState(undefined);
-
-  useEffect(() => {
-    const user = AuthService.getCurrentUser();
-
-    if (user) {
-      setCurrentUser(user);
-    }
-  }, []);
-
-  const logOut = () => {
-    AuthService.logout();
-  };
-
-  return (
-    <div>
-      <nav className="navbar navbar-expand navbar-dark bg-dark">
-        <Link to={"/"} className="navbar-brand">
-          GeekText
-        </Link>
-        <div className="navbar-nav mr-auto">
-          <li className="nav-item">
-            <Link to={"/home"} className="nav-link">
-              Home
-            </Link>
-          </li>
-
-          {currentUser && (
-            <li className="nav-item">
-              <Link to={"/user"} className="nav-link">
-                User
-              </Link>
-            </li>
-          )}
-        </div>
-
-        {currentUser ? (
-          <div className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <Link to={"/profile"} className="nav-link">
-                {currentUser.customer_id}
-              </Link>
-            </li>
-            <li className="nav-item">
-              <a href="/login" className="nav-link" onClick={logOut}>
-                LogOut
-              </a>
-            </li>
-          </div>
-        ) : (
-          <div className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <Link to={"/login"} className="nav-link">
-                Login
-              </Link>
-            </li>
-
-            <li className="nav-item">
-              <Link to={"/register"} className="nav-link">
-                Sign Up
-              </Link>
-            </li>
-
-            <li className="nav-item">
-              <Link to={"/account"} className="nav-link">
-                Account
-              </Link>
-            </li>
-
-          </div>
-        )}
-      </nav>
-
-      <div className="container mt-3">
-        <Switch>
-          <Route exact path={["/", "/home"]} component={Home} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/profile" component={Profile} />
-          <Route exact path="/account" component={Account} />
-          <Route path="/user" component={BoardUser} />
-          <Route path="/bookdetails/bookInfo/" component={BookInfo}/>
-          <Route path="/bookdetails/authorBooks/" component={authorBooks}/>
-        </Switch>
-      </div>
-    </div>
-  );
-};
-
-export default App;
+class App extends Component {
+  render() {
+      return (
+          <BrowserRouter>
+          <React.Fragment>
+          <MainNavigation />
+          <main className="main-content">
+          <Switch>
+              <Redirect from="/" to="/auth" exact/>
+              <Route path="/auth" component={Auth}/>
+              <Route path="/signup" component={SignUp}/>
+              <Route path="/account" component={AccountPage}/>
+              <Route path="/wishlist" exact component={WishlistMenu}/>
+              <Route path="/wishlist/createwish" component={CreateWish}/>
+              <Route path="/wishlist/currentwish" component={CurrentWishlist}/>
+              <Route path="/wishlist/display/:cart_id/:customer_id" component={DisplayWish}/> 
+              <Route path="/cart/CreateCart" component={CreateCart}/>
+              </Switch>
+              </main>
+          <Switch>        
+          </Switch>
+          </React.Fragment>
+          </BrowserRouter>
+          );
+      }
+  }
+  export default App;
