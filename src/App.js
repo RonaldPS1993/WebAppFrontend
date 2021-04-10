@@ -16,7 +16,7 @@ import authorBooks from "./Components/BookDetails/authorBooks";
 
 
 const App = () => {
-  const [currentUser, setCurrentUser] = useState(undefined);
+  const [currentUser, setCurrentUser] = useState();
 
   useEffect(() => {
     const user = AuthService.getCurrentUser();

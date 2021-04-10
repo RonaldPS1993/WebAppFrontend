@@ -11,6 +11,7 @@ export default class BookInfo extends Component {
         //Declaring states from the API
         this.state ={
             book_title: "",
+            book_isbn: "",
             publisher_id:"",
             bio: "",
             book_description: "",
@@ -30,6 +31,7 @@ export default class BookInfo extends Component {
             console.log(response)
             this.setState({
                 book_title: response.data.bookInfo[0].book_title,
+                book_isbn: response.data.bookInfo[0].book_isbn,
                 total_rating: response.data.bookInfo[0].total_rating,
                 book_description: response.data.bookInfo[0].book_description,
                 author_first_name : response.data.authorInfo[0].author_first_name,
@@ -70,6 +72,7 @@ export default class BookInfo extends Component {
                 <br></br>
                 <h3>Genre: {this.state.genre_name}</h3>
                 <br></br><br></br>
+                <h3>Book Isbn: {this.state.book_isbn}</h3>
                 <h3>Book Rating: {this.state.total_rating}/5</h3>
                 <h3>Customer Reviews and Comments</h3>
                 <hr></hr>
