@@ -13,21 +13,18 @@ import BoardUser from "./Components/BoardUser";
 import Account from "./Components/Account";
 import BookInfo from "./Components/BookDetails/BookInfo";
 import authorBooks from "./Components/BookDetails/authorBooks";
-<<<<<<< HEAD
 import Browsing from "./Components/BookBrowsing/browsing"
 import Topsellers from "./Components/BookBrowsing/topsellers"
 import Genre from "./Components/BookBrowsing/genre"
 import Rating from "./Components/BookBrowsing/rating"
 import Non_fiction from "./Components/BookBrowsing/non-fiction"
 import Fiction from "./Components/BookBrowsing/fiction"
-=======
 import WishlistMenu from './Components/Wishlist/WishlistMenu';
 import CreateWish from './Components/Wishlist/CreateWish';
 import CurrentWishlist from './Components/Wishlist/CurrentWishlist';
 import DisplayWish from './Components/Wishlist/DisplayWish';
 import AddToWish from './Components/Wishlist/AddToWish';
 import Change from './Components/Wishlist/Change';
->>>>>>> 9cd6c261ff5196abfbf45fb5314573b1c6e6defe
 
 
 const App = () => {
