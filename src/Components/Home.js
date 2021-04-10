@@ -25,6 +25,9 @@ class Home extends Component  {
             <li>
                 <NavLink to="/account">Account</NavLink>
             </li>
+            <li>
+                <NavLink to="/browsing">Browsing</NavLink>
+            </li>
         </ul>
     </nav>
      );

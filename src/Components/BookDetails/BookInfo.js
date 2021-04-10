@@ -13,6 +13,7 @@ export default class BookInfo extends Component {
             book_title: "",
             book_isbn: "",
             publisher_id:"",
+            book_isbn:"",
             bio: "",
             book_description: "",
             author_first_name: "",
@@ -76,6 +77,8 @@ export default class BookInfo extends Component {
                 <h3>Book Rating: {this.state.total_rating}/5</h3>
                 <h3>Customer Reviews and Comments</h3>
                 <hr></hr>
+                <br></br>
+                <h3><Link to={`/wishlist/add/${this.state.book_isbn}/${this.state.book_title}/test808@email.com`}> Add to wishlist</Link> </h3>
             </div>
         </body>
         )
