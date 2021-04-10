@@ -13,16 +13,22 @@ import BoardUser from "./Components/BoardUser";
 import Account from "./Components/Account";
 import BookInfo from "./Components/BookDetails/BookInfo";
 import authorBooks from "./Components/BookDetails/authorBooks";
+import WishlistMenu from './Components/Wishlist/WishlistMenu';
+import CreateWish from './Components/Wishlist/CreateWish';
+import CurrentWishlist from './Components/Wishlist/CurrentWishlist';
+import DisplayWish from './Components/Wishlist/DisplayWish';
+import AddToWish from './Components/Wishlist/AddToWish';
+import Change from './Components/Wishlist/Change';
 
 
 const App = () => {
-  const [currentUser, setCurrentUser] = useState(undefined);
+  const [currentUser, setCurrentUser] = useState();
 
   useEffect(() => {
     const user = AuthService.getCurrentUser();
-
     if (user) {
       setCurrentUser(user);
+
     }
   }, []);
 
@@ -84,6 +90,11 @@ const App = () => {
                 Account
               </Link>
             </li>
+            <li className="nav-item">
+              <Link to={`/wishlist/${currentUser}`} className="nav-link">
+                Wishlist
+              </Link>
+            </li>
 
           </div>
         )}
@@ -99,6 +110,12 @@ const App = () => {
           <Route path="/user" component={BoardUser} />
           <Route path="/bookdetails/bookInfo/" component={BookInfo}/>
           <Route path="/bookdetails/authorBooks/" component={authorBooks}/>
+          <Route path="/wishlist/:customer_id" exact component={WishlistMenu}/>
+          <Route path="/createwish/:customer_id" component={CreateWish}/>
+          <Route path="/currentwish/:customer_id" component={CurrentWishlist}/>
+          <Route path="/wishlist/display/:cart_id/:customer_id" component={DisplayWish}/> 
+          <Route path="/wishlist/add/:book_isbn/:book_title/:customer_id" component={AddToWish}/> 
+          <Route path="/wishlist/change/:book_count_id/:customer_id" component={Change}/> 
         </Switch>
       </div>
     </div>
