@@ -25,9 +25,6 @@ class Home extends Component  {
             <li>
                 <NavLink to="/account">Account</NavLink>
             </li>
-            <li>
-                <NavLink to="/cart/CreateCart">Cart</NavLink>
-            </li>
         </ul>
     </nav>
      );
